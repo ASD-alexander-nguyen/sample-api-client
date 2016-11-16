@@ -3,6 +3,7 @@ import './App.css';
 import superagent from 'superagent';
 import _ from 'lodash';
 import SchemaForm from  "react-jsonschema-form";
+import Filters from './Filters'
 
 const baseUrl = 'http://localhost:8080/api/v3';
 // const baseUrl = 'http://partners.perf.allstardirectories.com/api/v3';
@@ -19,12 +20,16 @@ class App extends Component {
       sessionToken: null,
       listings: [],
       programId: null,
-      rfiData: null
+      rfiData: null,
+      filters: {
+        subjectArea: null
+      },
+      filterOptions: null
     }
   }
 
   componentDidMount() {
-    superagent.post(`${baseUrl}/session`)
+    const sessionPromise = superagent.post(`${baseUrl}/session`)
         .query({
           marketContext: marketContext
         })
@@ -40,7 +45,9 @@ class App extends Component {
 
           return result.body.s;
         })
-        .then(sessionToken => {
+
+        // listings
+        sessionPromise.then(sessionToken => {
           return superagent.get(`${baseUrl}/listings`)
               .query({
                 s: sessionToken,
@@ -59,6 +66,20 @@ class App extends Component {
               .then(result =>
                 this.setState({
                   listings: result.body.listings
+                })
+              );
+        });
+
+        // filters
+        sessionPromise.then(sessionToken => {
+          return superagent.get(`${baseUrl}/filters`)
+              .query({
+                s: sessionToken,
+                marketContext: marketContext
+              })
+              .then(result =>
+                this.setState({
+                  filterOptions: result.body.filters
                 })
               );
         });
@@ -125,7 +146,11 @@ class App extends Component {
       return [bandName, schools];
     }).value();
 
-    return <div>{ bands }</div>;
+    return <div>
+      <h1>Filters</h1>
+      { this.state.filterOptions ? <Filters filterOptions={ this.state.filterOptions } filters={ this.state.filters } onFilterChange={ () => {} }/> : null }
+      { bands }
+    </div>;
   }
 }
 
