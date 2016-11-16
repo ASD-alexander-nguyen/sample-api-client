@@ -23,12 +23,12 @@ class Filters extends Component {
           <option key='all'></option>
           {
             _.map(this.props.filterOptions.subjectsArea, concentration => {
-              const concentrationOption = <option value={ concentration.value }>
+              const concentrationOption = <option value={ concentration.value } key={ concentration.value }>
                 { concentration.displayName }
               </option>
 
               const specializationOptions = _.map(concentration.specializations, specialization => {
-                return <option value={ specialization.value }>
+                return <option value={ specialization.value } key={ specialization.value }>
                   &nbsp;&nbsp;{ specialization.displayName }
                 </option>
               })
@@ -44,7 +44,7 @@ class Filters extends Component {
           <option key='all'></option>
           {
             _.map(this.props.filterOptions.degree, degree => {
-              return <option value={ degree.value }>
+              return <option value={ degree.value } key={ degree.value }>
                 { degree.displayName }
               </option>
             })
@@ -57,7 +57,7 @@ class Filters extends Component {
           <option key='all'></option>
           {
             _.map(this.props.filterOptions.setting, setting => {
-              return <option value={ setting.value }>
+              return <option value={ setting.value } key={ setting.value }>
                 { setting.displayName }
               </option>
             })
