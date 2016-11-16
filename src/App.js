@@ -67,6 +67,12 @@ class App extends Component {
         });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.filters !== prevState.filters) {
+        this.listingsUpdate(this.state.sessionToken);
+    }
+  }
+
   listingsUpdate(sessionToken) {
     return superagent.get(`${baseUrl}/listings`)
         .query({
