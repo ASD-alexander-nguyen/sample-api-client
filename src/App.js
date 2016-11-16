@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import superagent from 'superagent';
 import _ from 'lodash';
 import SchemaForm from  "react-jsonschema-form";
 import Filters from './Filters'
+
+import './App.css';
 
 const baseUrl = 'http://localhost:8080/api/v3';
 // const baseUrl = 'http://partners.perf.allstardirectories.com/api/v3';
@@ -22,7 +23,9 @@ class App extends Component {
       programId: null,
       rfiData: null,
       filters: {
-        subjectArea: null
+        subjectArea: null,
+        degrees: [],
+        setting: null
       },
       filterOptions: null
     }
@@ -47,28 +50,7 @@ class App extends Component {
         })
 
         // listings
-        sessionPromise.then(sessionToken => {
-          return superagent.get(`${baseUrl}/listings`)
-              .query({
-                s: sessionToken,
-                marketContext: marketContext,
-                subjectArea: 'accounting-finance-concentration',
-                degree: 'associates',
-                instructionMethod: 'CLASSROOM',
-                postalCode: '98166',
-                distance: 100,
-                resultSize: 20,
-                inquiries: {
-                  '178254_1': new Date().toJSON(),
-                  '178255_1': new Date().toJSON()
-                }
-              })
-              .then(result =>
-                this.setState({
-                  listings: result.body.listings
-                })
-              );
-        });
+        sessionPromise.then(sessionToken => this.listingsUpdate(sessionToken));
 
         // filters
         sessionPromise.then(sessionToken => {
@@ -83,6 +65,35 @@ class App extends Component {
                 })
               );
         });
+  }
+
+  listingsUpdate(sessionToken) {
+    return superagent.get(`${baseUrl}/listings`)
+        .query({
+          s: sessionToken,
+          marketContext: marketContext,
+          subjectArea: this.state.filters.subjectArea,
+          degree: this.state.filters.degrees,
+          setting: this.state.filters.setting,
+          postalCode: '98166',
+          distance: 100,
+          resultSize: 20,
+          inquiries: {
+            '178254_1': new Date().toJSON(),
+            '178255_1': new Date().toJSON()
+          }
+        })
+        .then(result =>
+          this.setState({
+            listings: result.body.listings
+          })
+        );
+  }
+
+  filtersUpdateHandler(filters) {
+    this.setState({
+      filters: filters
+    });
   }
 
   programSelectedHandler(programId) {
@@ -148,7 +159,8 @@ class App extends Component {
 
     return <div>
       <h1>Filters</h1>
-      { this.state.filterOptions ? <Filters filterOptions={ this.state.filterOptions } filters={ this.state.filters } onFilterChange={ () => {} }/> : null }
+      { this.state.filterOptions ? <Filters filterOptions={ this.state.filterOptions } filters={ this.state.filters } onFilterChange={ (filters) => this.filtersUpdateHandler(filters) }/> : null }
+      <h1>Listings</h1>
       { bands }
     </div>;
   }

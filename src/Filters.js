@@ -1,38 +1,71 @@
-import React from 'react';
+import React, { Component } from 'react';
 import _ from 'lodash';
 
-const Filters = (props) => {
-  console.log(props.filterOptions)
+import './Filters.css';
 
-  return <div id='filters'>
-    <div id='subjectArea'>
-      <h3>Subject Area</h3>
-      <select onChange={ props.onFilterChange }>
-        {
-          _.map(props.filterOptions.subjectsArea, concentration => {
-            console.log(concentration);
-            const concentrationOption = <option value={ concentration.value }>
-              { concentration.displayName }
-            </option>
+class Filters extends Component {
+  handleFilterChange() {
+    this.props.onFilterChange({
+      subjectArea: this.subjectArea.value,
+      degrees: _(this.degrees.options)
+          .filter(o => o.selected)
+          .map(o => o.value)
+          .value(),
+      setting: this.setting.value,
+    });
+  };
 
-            const specializationOptions = _.map(concentration.specializations, specialization => {
-              return <option value={ specialization.value } selected={ props.filters.subjectArea === specialization.value }>
-                &nbsp;&nbsp;{ specialization.displayName }
+  render() {
+    return <div id='filters'>
+      <div id='subjectArea' className='filter'>
+        <h3>Subject Area</h3>
+        <select defaultValue={ this.props.filters.subjectArea } onChange={ _.bind(this.handleFilterChange, this) } ref={ elem => {this.subjectArea = elem} }>
+          <option key='all'></option>
+          {
+            _.map(this.props.filterOptions.subjectsArea, concentration => {
+              const concentrationOption = <option value={ concentration.value }>
+                { concentration.displayName }
+              </option>
+
+              const specializationOptions = _.map(concentration.specializations, specialization => {
+                return <option value={ specialization.value }>
+                  &nbsp;&nbsp;{ specialization.displayName }
+                </option>
+              })
+
+              return [concentrationOption, specializationOptions]
+            })
+          }
+        </select>
+      </div>
+      <div id='degrees' className='filter'>
+        <h3>Degree</h3>
+        <select defaultValue={ this.props.filters.degrees } onChange={ _.bind(this.handleFilterChange, this) } ref={ elem => {this.degrees = elem} } multiple>
+          <option key='all'></option>
+          {
+            _.map(this.props.filterOptions.degree, degree => {
+              return <option value={ degree.value }>
+                { degree.displayName }
               </option>
             })
-
-            return [concentrationOption, specializationOptions]
-          })
-        }
-      </select>
+          }
+        </select>
+      </div>
+      <div id='setting' className='filter'>
+        <h3>Setting</h3>
+        <select defaultValue={ this.props.filters.setting } onChange={ _.bind(this.handleFilterChange, this) } ref={ elem => {this.setting = elem} }>
+          <option key='all'></option>
+          {
+            _.map(this.props.filterOptions.setting, setting => {
+              return <option value={ setting.value }>
+                { setting.displayName }
+              </option>
+            })
+          }
+        </select>
+      </div>
     </div>
-    <div id='degree'>
-
-    </div>
-    <div id='setting'>
-
-    </div>
-  </div>
+  }
 }
 
 Filters.propTypes = {
