@@ -1,36 +1,10 @@
 import React, { Component } from 'react';
-import { createStore, applyMiddleware } from 'redux'
-import { connect, Provider } from 'react-redux'
+import { createStore } from 'redux'
 import _ from 'lodash'
-import Listings from './Listings'
-import Filters from './Filters'
+import ReduxListings from './components/ReduxListings'
+import ReduxFilters from './components/ReduxFilters'
 import Reducers from './Reducers'
 import Server from './Server'
-
-// Listings
-const listingsStateToProps = state => {
-  return { listings: state.listings };
-}
-const ReduxListings = connect(listingsStateToProps)(Listings);
-
-// Filters
-const filtersStateToProps = state => {
-  return {
-    filters: state.filters,
-    filterOptions: state.filterOptions
-  }
-}
-const filtersDispatchToProps = dispatch => {
-  return {
-    onFilterChange: filters => {
-      dispatch({
-        type: 'NEW_FILTERS',
-        payload: filters
-      });
-    }
-  }
-}
-const ReduxFilters = connect(filtersStateToProps, filtersDispatchToProps)(Filters);
 
 const store = createStore(Reducers, {
   sessionToken: null,
@@ -79,13 +53,6 @@ sessionPromise.then(sessionToken => store.dispatch({
 
 class App extends Component {
   render() {
-    const filters = {
-      subjectArea: null,
-      degrees: [],
-      setting: null
-    }
-    const filterOptions = null;
-
     // TODO Provider
     return <div>
       <h1>Filters</h1>

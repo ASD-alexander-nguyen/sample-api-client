@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import SchemaForm from  "react-jsonschema-form";
-import Server from './Server'
+import Server from '../Server'
 
 import './Listings.css';
 
