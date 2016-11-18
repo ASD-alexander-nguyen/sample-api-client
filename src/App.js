@@ -37,7 +37,7 @@ const store = createStore(Reducers, {
   filterOptions: {},
   filters: {},
   listings: []
-});
+}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 let prevSessionToken = null;
 store.subscribe(() => {
