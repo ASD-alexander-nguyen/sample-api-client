@@ -24,10 +24,16 @@ store.subscribe(() => {
           type: 'NEW_FILTER_OPTIONS',
           payload: filterOptions
         }));
+
+    Server.getListings(sessionToken, store.getState().filters)
+        .then(listings => store.dispatch({
+          type: 'NEW_LISTINGS',
+          payload: listings
+        }));
   }
 
   prevSessionToken = sessionToken;
-})
+});
 
 let prevFilters = {};
 store.subscribe(() => {
@@ -42,16 +48,17 @@ store.subscribe(() => {
   }
 
   prevFilters = filters;
-})
-
-const sessionPromise = Server.createSession()
-sessionPromise.then(sessionToken => store.dispatch({
-      type: 'NEW_SESSION_TOKEN',
-      payload: sessionToken
-    }));
-
+});
 
 class App extends Component {
+  componentDidMount() {
+    const sessionPromise = Server.createSession()
+    sessionPromise.then(sessionToken => store.dispatch({
+          type: 'NEW_SESSION_TOKEN',
+          payload: sessionToken
+        }));
+  }
+
   render() {
     // TODO Provider
     return <div>
