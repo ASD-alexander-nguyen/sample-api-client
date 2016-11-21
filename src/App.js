@@ -13,41 +13,39 @@ const store = createStore(Reducers, {
   listings: []
 }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-let prevSessionToken = null;
-store.subscribe(() => {
-  const sessionToken = store.getState().sessionToken;
+function subscribeForPath(statePathFunction, callback) {
+  let prevValue;
+  store.subscribe(() => {
+    const value = statePathFunction(store.getState());
+    if(!_.isEqual(value, prevValue))
+    {
+      callback(value);
+    }
 
-  if(prevSessionToken !== sessionToken)
-  {
-    Server.getFilters(sessionToken)
-        .then(filterOptions => store.dispatch({
-          type: 'NEW_FILTER_OPTIONS',
-          payload: filterOptions
-        }));
+    prevValue = value;
+  });
+}
 
-    Server.getListings(sessionToken, store.getState().filters)
-        .then(listings => store.dispatch({
-          type: 'NEW_LISTINGS',
-          payload: listings
-        }));
-  }
+subscribeForPath(s => s.sessionToken, sessionToken => {
+  Server.getFilters(sessionToken)
+      .then(filterOptions => store.dispatch({
+        type: 'NEW_FILTER_OPTIONS',
+        payload: filterOptions
+      }));
 
-  prevSessionToken = sessionToken;
-});
-
-let prevFilters = {};
-store.subscribe(() => {
-  const filters = store.getState().filters;
-  if(!_.isEqual(filters, prevFilters))
-  {
-    Server.getListings(store.getState().sessionToken, filters)
+  Server.getListings(sessionToken, store.getState().filters)
       .then(listings => store.dispatch({
         type: 'NEW_LISTINGS',
         payload: listings
       }));
-  }
+});
 
-  prevFilters = filters;
+subscribeForPath(s => s.filters, filters => {
+  Server.getListings(store.getState().sessionToken, filters)
+    .then(listings => store.dispatch({
+      type: 'NEW_LISTINGS',
+      payload: listings
+    }));
 });
 
 class App extends Component {
