@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux'
 import _ from 'lodash'
+import Bacon from 'baconjs'
 import ReduxListings from './components/ReduxListings'
 import ReduxFilters from './components/ReduxFilters'
 import Reducers from './Reducers'
@@ -13,40 +14,39 @@ const store = createStore(Reducers, {
   listings: []
 }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-function subscribeForPath(statePathFunction, callback) {
-  let prevValue;
-  store.subscribe(() => {
-    const value = statePathFunction(store.getState());
-    if(!_.isEqual(value, prevValue))
-    {
-      callback(value);
-    }
+const storeProperty = Bacon.fromBinder(sink =>
+  store.subscribe(() =>
+    sink(store.getState())
+  )
+).toProperty();
 
-    prevValue = value;
-  });
+function propertyForPath(statePathFunction) {
+  return storeProperty
+    .map(statePathFunction)
+    .skipDuplicates(_.isEqual)
+    .toProperty()
 }
 
-subscribeForPath(s => s.sessionToken, sessionToken => {
-  Server.getFilters(sessionToken)
-      .then(filterOptions => store.dispatch({
-        type: 'NEW_FILTER_OPTIONS',
-        payload: filterOptions
-      }));
+const sessionTokenProperty = propertyForPath(s => s.sessionToken);
+const filtersProperty = propertyForPath(s => s.filters);
 
-  Server.getListings(sessionToken, store.getState().filters)
-      .then(listings => store.dispatch({
-        type: 'NEW_LISTINGS',
-        payload: listings
-      }));
-});
-
-subscribeForPath(s => s.filters, filters => {
-  Server.getListings(store.getState().sessionToken, filters)
-    .then(listings => store.dispatch({
+sessionTokenProperty
+    .flatMap(sessionToken =>
+      filtersProperty.flatMap(filters =>
+        Bacon.fromPromise(Server.getListings(sessionToken, filters))
+      )
+    ).onValue(listings => store.dispatch({
       type: 'NEW_LISTINGS',
       payload: listings
     }));
-});
+
+sessionTokenProperty
+    .flatMap(sessionToken =>
+      Bacon.fromPromise(Server.getFilters(sessionToken))
+    ).onValue(filterOptions => store.dispatch({
+      type: 'NEW_FILTER_OPTIONS',
+      payload: filterOptions
+    }));
 
 class App extends Component {
   componentDidMount() {
