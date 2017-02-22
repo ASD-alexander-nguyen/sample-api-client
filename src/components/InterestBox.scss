@@ -1,3 +1,17 @@
+.interest-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  .interest-box {
+    flex: 1 1 25%;
+
+    &.selected {
+      background-color: rgba(0,0,0,.05);
+    }
+  }
+}
+
 //
 // This mixin defines the default overrides for a visual context
 //
@@ -8,7 +22,7 @@
   //
   @if $needs-icon == true {
     .asd-context-icon.asd-context-#{$context} {
-      background-image: url("images/context/#{$context}.png");
+      background-image: url("../images/contexts/#{$context}.png");
     }
   }
 

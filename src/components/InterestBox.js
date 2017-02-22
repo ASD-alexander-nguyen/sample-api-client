@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-// import './InterestBox.css';
+import './InterestBox.css';
 
 class InterestBox extends Component {
     constructor() {
@@ -10,7 +10,7 @@ class InterestBox extends Component {
 
     render() {
         return (
-            <div className={`${this.props.visualContext} interest-box`}>
+            <div className={`${this.props.visualContext} ${ this.props.selected ? 'selected' : ''} interest-box`} onClick={ this.props.onClick }>
                 <div className="interest-context-icon"/>
                 <div className={`interest-context-description`}>
                     <h3>{ this.props.title }</h3>

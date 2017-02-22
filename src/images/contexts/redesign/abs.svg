@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 118.5 115.7" style="enable-background:new 0 0 118.5 115.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#XMLID_2_);fill:#DEE5E4;}
+	.st1{clip-path:url(#XMLID_2_);fill:#C9CECE;}
+	.st2{fill:#FFFFFF;}
+	.st3{fill:#EF4C54;}
+	.st4{fill:#E5344E;}
+	.st5{filter:url(#Adobe_OpacityMaskFilter);}
+	.st6{filter:url(#Adobe_OpacityMaskFilter_1_);}
+	.st7{mask:url(#XMLID_3_);fill:url(#XMLID_4_);}
+	.st8{fill:#6D1B2A;}
+	.st9{fill:#16B1DE;}
+	.st10{filter:url(#Adobe_OpacityMaskFilter_2_);}
+	.st11{filter:url(#Adobe_OpacityMaskFilter_3_);}
+	.st12{mask:url(#XMLID_5_);fill:url(#XMLID_6_);}
+	.st13{fill:#118DB2;}
+	.st14{fill:#DF3D88;}
+	.st15{fill:#B2306B;}
+	.st16{fill:#CCCBCB;}
+	.st17{fill:#46C3DA;}
+	.st18{fill:#27ACCE;}
+	.st19{fill:#00A58C;}
+	.st20{fill:#BB826E;}
+	.st21{fill:#4D4E4E;}
+	.st22{fill:#565759;}
+	.st23{fill:#444446;}
+	.st24{fill:#F9C31A;}
+	.st25{fill:#E4AC23;}
+	.st26{clip-path:url(#XMLID_7_);fill:#C5E7E9;}
+	.st27{clip-path:url(#XMLID_7_);fill:#9CC1C3;}
+	.st28{fill:#005C89;}
+	.st29{fill:#89A3A3;}
+	.st30{fill:#728D8D;}
+	.st31{fill:#F4F6F6;}
+	.st32{fill:#046F99;}
+	.st33{fill:#F16355;}
+	.st34{filter:url(#Adobe_OpacityMaskFilter_4_);}
+	.st35{filter:url(#Adobe_OpacityMaskFilter_5_);}
+	.st36{mask:url(#XMLID_8_);fill:url(#XMLID_9_);}
+	.st37{fill:url(#XMLID_10_);}
+</style>
+<g id="XMLID_1151_">
+	<circle id="XMLID_1159_" class="st9" cx="60.5" cy="58.6" r="56.1"/>
+	<defs>
+		<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="32.4" y="35.8" width="83.4" height="78.5">
+			<feFlood  style="flood-color:white;flood-opacity:1" result="back"/>
+			<feBlend  in="SourceGraphic" in2="back" mode="normal"/>
+		</filter>
+	</defs>
+	<mask maskUnits="userSpaceOnUse" x="32.4" y="35.8" width="83.4" height="78.5" id="XMLID_2_">
+		<g id="XMLID_134_" class="st5">
+			<defs>
+				<filter id="Adobe_OpacityMaskFilter_1_" filterUnits="userSpaceOnUse" x="32.4" y="35.8" width="83.4" height="78.5">
+					<feFlood  style="flood-color:white;flood-opacity:1" result="back"/>
+					<feBlend  in="SourceGraphic" in2="back" mode="normal"/>
+				</filter>
+			</defs>
+			<mask maskUnits="userSpaceOnUse" x="32.4" y="35.8" width="83.4" height="78.5" id="XMLID_2_">
+			</mask>
+			<linearGradient id="XMLID_3_" gradientUnits="userSpaceOnUse" x1="34.7038" y1="34.6032" x2="99.2319" y2="99.1312">
+				<stop  offset="0.4" style="stop-color:#333333"/>
+				<stop  offset="0.6057" style="stop-color:#2A2A2A"/>
+				<stop  offset="0.9402" style="stop-color:#121212"/>
+				<stop  offset="1" style="stop-color:#0D0D0D"/>
+			</linearGradient>
+			<path id="XMLID_135_" style="mask:url(#XMLID_2_);fill:url(#XMLID_3_);" d="M115.8,67.7L86.3,38.2c-0.3-0.4-0.8-0.6-1.3-0.6h-8.8
+				c-0.7,0-1.3,0.4-1.6,1.1c-0.3,0.7-0.1,1.4,0.4,1.9l3.1,3.1L68.9,53L56,46.5c-0.7-0.3-1.5-0.2-2,0.3l-4,4L35.4,36.4
+				c-0.3-0.3-0.8-0.5-1.3-0.5c-1,0-1.8,0.8-1.8,1.8v42c0,0.5,0.2,1,0.6,1.3l33.4,33.4C91.6,111.7,111.8,92.4,115.8,67.7z"/>
+		</g>
+	</mask>
+	<path id="XMLID_1158_" class="st13" d="M115.8,67.7L86.3,38.2c-0.3-0.4-0.8-0.6-1.3-0.6h-8.8c-0.7,0-1.3,0.4-1.6,1.1
+		c-0.3,0.7-0.1,1.4,0.4,1.9l3.1,3.1L68.9,53L56,46.5c-0.7-0.3-1.5-0.2-2,0.3l-4,4L35.4,36.4c-0.3-0.3-0.8-0.5-1.3-0.5
+		c-1,0-1.8,0.8-1.8,1.8v42c0,0.5,0.2,1,0.6,1.3l33.4,33.4C91.6,111.7,111.8,92.4,115.8,67.7z"/>
+	<g id="XMLID_1152_">
+		<path id="XMLID_1154_" class="st2" d="M86.8,77.9V55.1h-5.3v22.8h-5.3V58L71,61.9v16h-5.3V61.2l-5.3-2.6v19.3h-5.3V58L50,63.3
+			v14.6h-5.3v-8.8h-5.3v8.8h-3.5V37.6c0-1-0.8-1.8-1.8-1.8s-1.8,0.8-1.8,1.8v42c0,1,0.8,1.8,1.8,1.8h52.6c1,0,1.8-0.8,1.8-1.8
+			S87.7,77.9,86.8,77.9z"/>
+		<path id="XMLID_1153_" class="st2" d="M41.2,63.9c0.4,0,0.9-0.2,1.2-0.5l13.1-13.1l12.9,6.4c0.7,0.3,1.5,0.2,2-0.3l10.1-10.1
+			l3.1,3.1c0.3,0.3,0.8,0.5,1.2,0.5c0.2,0,0.5,0,0.7-0.1c0.7-0.3,1.1-0.9,1.1-1.6v-8.8c0-1-0.8-1.8-1.8-1.8h-8.8
+			c-0.7,0-1.3,0.4-1.6,1.1c-0.3,0.7-0.1,1.4,0.4,1.9l3.1,3.1L68.9,53L56,46.5c-0.7-0.3-1.5-0.2-2,0.3l-14,14c-0.7,0.7-0.7,1.8,0,2.5
+			C40.3,63.7,40.8,63.9,41.2,63.9z"/>
+	</g>
+</g>
+</svg>

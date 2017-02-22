@@ -17,9 +17,16 @@ class AcolsComposition extends Component {
     componentDidMount() {
     }
 
+    handleClick(context) {
+        const selectedContext = context.visualContext;
+        this.setState({
+            selectedContext
+        });
+    }
+
     render() {
         const interestContexts = this.props.interestContexts;
-        const interestBoxes = _.map(interestContexts, (context, i) => <InterestBox key={i} {...context} />);
+        const interestBoxes = _.map(interestContexts, (context, i) => { return <InterestBox key={i} selected={ this.state.selectedContext === context.visualContext } onClick={ _.bind(this.handleClick, this, context) } {...context} /> });
 
         return (
             <div className="interest-boxes">
