@@ -1,0 +1,58 @@
+//
+// This mixin defines the default overrides for a visual context
+//
+@mixin visual-context($context, $color, $needs-icon, $header-file-type) {
+
+  //
+  // Define the icon for the main page
+  //
+  @if $needs-icon == true {
+    .asd-context-icon.asd-context-#{$context} {
+      background-image: url("images/context/#{$context}.png");
+    }
+  }
+
+  //
+  // Define the listing and hub page overrides
+  //
+  &.asd-visual-context-#{$context} {
+    .asd-generated-context-icon {
+      background: mix(white, $color, 30%);
+    }
+    .asd-header-image {
+      //@include header-image($context, $header-file-type);
+    }
+
+  }
+}
+
+$palette-default-highlight-1: #fff;
+
+#asd-page {
+
+  //
+  // The rest of the contexts are color matched to their icons
+  //
+  @include visual-context(aas, #eb7026, true, PNG);
+  @include visual-context(abs, #39b54a, true, PNG);
+  @include visual-context(acjs, #2e3192, true, PNG);
+  @include visual-context(acs, #00aeef, true, PNG);
+  @include visual-context(aes, #7a0026, true, PNG);
+  @include visual-context(ahs, #0076a3, true, PNG);
+  @include visual-context(ans, #ed145b, true, PNG);
+  @include visual-context(apsy, #007236, true, PNG);
+  @include visual-context(acom, #0d004c, true, PNG);
+  @include visual-context(voc, #990000, true, PNG);
+  @include visual-context(mhss, $palette-default-highlight-1, true, PNG);
+  @include visual-context(cbs, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(cds, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(dit, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(dsd, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(mcjds, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(meds, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(mpss, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(nsd, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(vgd, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(dcd, $palette-default-highlight-1, false, JPEG);
+  @include visual-context(default, $palette-default-highlight-1, false, PNG);
+}

@@ -38,4 +38,13 @@ const sessionToken = (state = null, action) => {
   }
 }
 
-export default combineReducers({ filters, filterOptions, listings, sessionToken })
+const interestContexts = (state = [], action) => {
+  switch(action.type) {
+    case 'NEW_INTEREST_CONTEXTS':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ filters, filterOptions, listings, sessionToken, interestContexts})
