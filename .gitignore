@@ -2,9 +2,13 @@
 
 # dependencies
 node_modules
+# ignore jetbrains stuff
+.idea/
 
 # production
 build
+src/**/*.css
+src/*.css
 
 # misc
 .DS_Store

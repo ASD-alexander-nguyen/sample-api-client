@@ -1,7 +1,7 @@
 import superagent from 'superagent';
 
-const baseUrl = 'http://localhost:8080/api/v3';
-// const baseUrl = 'http://partners.perf.allstardirectories.com/api/v3';
+// const baseUrl = 'http://localhost:8080/api/v3';
+const baseUrl = 'http://partners.perf.allstardirectories.com/api/v3';
 // const baseUrl = 'http://apitest.allstardirectories.com/api/v3';
 const marketContext = 'abs';
 const source = 'asd';
