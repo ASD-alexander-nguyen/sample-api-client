@@ -1,7 +1,4 @@
 #filters {
-  display: flex;
-}
-
-#filters .filter {
-  margin-left: 5px;
-}
+  display: flex; }
+  #filters .filter {
+    margin-left: 5px; }
